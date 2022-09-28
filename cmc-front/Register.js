@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView,
 } from 'react-native';
+import { Base64 } from 'js-base64';
 
 const Register = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -18,6 +19,7 @@ const Register = ({ navigation }) => {
 
     const passwordRef = createRef();
     const confirmPasswordRef = createRef();
+    let hashedPassword = ''
 
     const emailRegex =
         /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -35,6 +37,10 @@ const Register = ({ navigation }) => {
         if (password != confirmPassword) {
             setErrorMessage('Los campos de contraseña y confirmar contraseña no concuerdan');
         }
+
+        var encode = Base64.encode(password);
+        hashedPassword = encode
+        setErrorMessage(hashedPassword)
     }
 
     return (
@@ -85,7 +91,7 @@ const Register = ({ navigation }) => {
                             <TextInput
                                 style={styles.input}
                                 onChangeText={(confirmPassword) =>
-                                    setPassword(confirmPassword)
+                                    setconfirmPassword(confirmPassword)
                                 }
                                 placeholder="Confirmar Contraseña"
                                 placeholderTextColor="#CCCCCC"
