@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView,
 } from 'react-native';
+import { API_KEY } from '@env';
 
 const Register = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -35,6 +36,20 @@ const Register = ({ navigation }) => {
         if (password != confirmPassword) {
             setErrorMessage('Los campos de contraseña y confirmar contraseña no concuerdan');
         }
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-api-key': API_KEY },
+            body: JSON.stringify({ user: email, password })
+        };
+        fetch('https://6qeaxhu5lk.execute-api.us-east-1.amazonaws.com/default/userRegistration', requestOptions)
+            .then(response => {
+                if (response.ok)
+                    navigation.replace('Feed')
+                return response.json();
+            })
+            .then(data => {
+                setErrorMessage(data.message);
+            });
     }
 
     return (

@@ -1,7 +1,9 @@
+import React from 'react';
 import Login from './Login';
 import Register from './Register';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import Feed from './Feed';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
@@ -12,12 +14,17 @@ export default function App() {
         <Stack.Screen
           name="Login"
           component={Login}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Register"
           component={Register}
-          options={{headerShown: false}}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Feed"
+          component={Feed}
+          options={{ headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>
