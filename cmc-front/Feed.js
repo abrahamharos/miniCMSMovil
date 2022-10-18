@@ -6,10 +6,7 @@ import { NativeBaseProvider } from 'native-base';
 const Feed = ({ navigation }) => {
     return (
         <NativeBaseProvider>
-            <TextCard text='fuera' />
-            <TextCard text='fuera' />
-            <TextCard text='fuera' />
-            <TextCard text='fuera' />
+            <TextCard title='Holiiii' author='Mariana' text='Este es un post de prueba de de Mariana :)' date='Hoy' />
         </NativeBaseProvider>
     );
 }
