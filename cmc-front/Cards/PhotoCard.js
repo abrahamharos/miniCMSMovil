@@ -2,7 +2,7 @@ import React from 'react';
 import { Stack, Box, HStack, AspectRatio, Image, Center, Heading, Text } from 'native-base';
 import { Dimensions } from 'react-native';
 
-const TextCard = ({ title, author, text, date }) => {
+const PhotoCard = ({ photo, title, author, text, date  }) => {
     return <Box alignItems="center">
       <Box width={Dimensions.get('window').width} rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="10" _dark={{
       borderColor: "coolGray.600",
@@ -13,6 +13,13 @@ const TextCard = ({ title, author, text, date }) => {
     }} _light={{
       backgroundColor: "gray.50"
     }}>
+        <Box>
+          <AspectRatio w="100%" ratio={16 / 9}>
+            <Image source={{
+            uri: photo
+          }} alt="image" />
+          </AspectRatio>
+        </Box>
         <Stack p="4" space={3}>
           <Stack space={2}>
             <Heading size="md" ml="-1">
@@ -42,4 +49,4 @@ const TextCard = ({ title, author, text, date }) => {
       </Box>
     </Box>;
 };
-export default TextCard;
+export default PhotoCard;
