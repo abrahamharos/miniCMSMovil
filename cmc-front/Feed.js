@@ -8,6 +8,7 @@ import { Header } from '@react-navigation/stack';
 import { API_KEY } from '@env';
 import axios from "axios";
 import ProgressCard from './Cards/ProgressCard';
+import DateCard from './Cards/DateCard';
 
 
 const Feed = ({ navigation }) => {
@@ -42,6 +43,8 @@ const Feed = ({ navigation }) => {
                         return <PhotoCard photo={card.img} title={card.title} author={card.author} text={card.message} date={card.timestamp} />
                     } else if (card.type == "progress") {
                         return <ProgressCard title={card.title} author={card.author} date={card.date} progress={card.progress} color={card.color}/>
+                    } else if (card.type == "date") {
+                        return <DateCard title={card.title} author={card.author} date={card.date}/>
                     }
                 })}
             </ScrollView>
