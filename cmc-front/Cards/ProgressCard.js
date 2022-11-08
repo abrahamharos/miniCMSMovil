@@ -1,9 +1,9 @@
 import React from 'react';
-import { Stack, Box, HStack, AspectRatio, Image, Center, Heading, Text } from 'native-base';
+import { Stack, Box, HStack, Heading, Text } from 'native-base';
 import { Dimensions } from 'react-native';
-import StyledText from 'react-native-styled-text';
+import * as Progress from 'react-native-progress';
 
-const TextCard = ({ title, author, text, date }) => {
+const ProgressCard = ({ title, author, date, progress, color }) => {
     return <Box alignItems="center">
       <Box width={Dimensions.get('window').width} rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="10" _dark={{
       borderColor: "coolGray.600",
@@ -27,9 +27,11 @@ const TextCard = ({ title, author, text, date }) => {
               {author}
             </Text>
           </Stack>
-          <StyledText fontWeight="400">
-            {text}
-          </StyledText>
+          <Stack alignItems="center">
+          <Progress.Circle progress={progress} size={150} showsText={true} color={color ?? '#8b5cf6'} formatText={() => {
+                  return `${progress * 100}%`
+                }} />
+                </Stack>
           <HStack alignItems="center" space={4} justifyContent="space-between">
             <HStack alignItems="center">
               <Text color="coolGray.600" _dark={{
@@ -43,4 +45,4 @@ const TextCard = ({ title, author, text, date }) => {
       </Box>
     </Box>;
 };
-export default TextCard;
+export default ProgressCard;

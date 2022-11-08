@@ -2,6 +2,7 @@ import React from 'react';
 import { Stack, Box, HStack, AspectRatio, Image, Center, Heading, Text } from 'native-base';
 import { Dimensions } from 'react-native';
 import ConfettiCannon from 'react-native-confetti-cannon';
+import StyledText from 'react-native-styled-text';
 
 const CelebrationCard = ({ photo, title, author, text, date }) => {
   var explosion;
@@ -37,9 +38,9 @@ const CelebrationCard = ({ photo, title, author, text, date }) => {
             {author}
           </Text>
         </Stack>
-        <Text fontWeight="400">
+        <StyledText fontWeight="400">
           {text}
-        </Text>
+        </StyledText>
         <HStack alignItems="center" space={4} justifyContent="space-between">
           <HStack alignItems="center">
             <Text color="coolGray.600" _dark={{

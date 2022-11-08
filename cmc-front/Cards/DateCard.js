@@ -1,9 +1,8 @@
 import React from 'react';
 import { Stack, Box, HStack, AspectRatio, Image, Center, Heading, Text } from 'native-base';
 import { Dimensions } from 'react-native';
-import StyledText from 'react-native-styled-text';
 
-const TextCard = ({ title, author, text, date }) => {
+const DateCard = ({ title, author, date }) => {
     return <Box alignItems="center">
       <Box width={Dimensions.get('window').width} rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="10" _dark={{
       borderColor: "coolGray.600",
@@ -27,20 +26,13 @@ const TextCard = ({ title, author, text, date }) => {
               {author}
             </Text>
           </Stack>
-          <StyledText fontWeight="400">
-            {text}
-          </StyledText>
-          <HStack alignItems="center" space={4} justifyContent="space-between">
-            <HStack alignItems="center">
-              <Text color="coolGray.600" _dark={{
-              color: "warmGray.200"
-            }} fontWeight="400">
-                {date}
-              </Text>
-            </HStack>
-          </HStack>
+          <Stack alignItems="center" paddingBottom="5">
+          <Text fontWeight="1000" fontSize="5xl">
+            {date}
+          </Text>
+          </Stack>
         </Stack>
       </Box>
     </Box>;
 };
-export default TextCard;
+export default DateCard;
