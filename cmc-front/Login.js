@@ -10,6 +10,8 @@ import {
     KeyboardAvoidingView,
 } from 'react-native';
 import { API_KEY } from '@env';
+import axios from "axios";
+
 
 const Login = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -31,20 +33,12 @@ const Login = ({ navigation }) => {
             setErrorMessage('La contraseña debe contener al menos 6 caracteres.');
             return;
         }
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'x-api-key': API_KEY },
-            body: JSON.stringify({ user: email, password })
-        };
-        fetch('https://6qeaxhu5lk.execute-api.us-east-1.amazonaws.com/default/userValidation', requestOptions)
-            .then(response => {
-                if (response.ok)
-                    navigation.replace('Feed')
-                return response.json();
-            })
-            .then(data => {
-                setErrorMessage(data.message);
-            });
+        axios.post('https://6qeaxhu5lk.execute-api.us-east-1.amazonaws.com/default/userValidation',
+        { user: email, password }, {'headers': { 'Content-Type': 'application/json', 'x-api-key': API_KEY }})
+        .then(response => {if (response.status == 200){navigation.replace('Feed');}})
+        .catch(error => {
+            setErrorMessage(error.response.data.message);
+        });
     }
 
     return (
